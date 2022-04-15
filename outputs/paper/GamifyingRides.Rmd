@@ -1,0 +1,136 @@
+---
+title: "Peloton's Gamification of Rides can Help Improve User Performance and Motivation"
+subtitle: "A study on the role of motivational affordance as a user experience design and it's effects"
+author: "Eden Barker"
+thanks: 'Code and data supporting this analysis is are available at: (https://github.com/edenbarker/GamifyingRides).'
+date: "`r format(Sys.time(), '%d %B %Y')`"
+abstract: "This report discusses the role of gamification in Peloton's exercise programs using user performance data gathered from the platform. The data is analyzed and visualized using the programming language R. The results suggest the occurrence of self-competition as a by-product of the program's gamification strategy experienced by users through motivational affordances to improve user performance and motivation. This demonstrates an intended design for user experience that can be beneficial to the user through increase physical activity and the company through user membership retention.\\par \\textbf{Keywords:} Bike+, Peloton, Gamification, Exercise, Indoor Cycling, Leaderboard, Motivation, User Engagement."
+
+output:
+  bookdown::pdf_document2
+toc: FALSE
+bibliography: references.bib
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+options(repos = list(CRAN="http://cran.rstudio.com/"))
+#install.packages("ggplot2")
+#install.packages("dplyr")
+#install.packages("tidyverse")
+#install.packages("janitor")
+#install.packages("tidyr")
+#install.packages("knitr")
+library(ggplot2)
+library(dplyr)
+library(tidyverse)
+library(janitor)
+library(knitr)
+
+```
+
+# Introduction
+
+When **Peloton** launched their product, they marketed it as a top of the line stationary bike with on-demand cycling classes that fosters community building and competition at the comfort of users homes. In just 8 years, **Peloton** was able to propel their company from a crowd-sourced funded startup to a billion dollar brand name. Along these are many controversies involving failed marketing campaigns that went under fire such as the viral Christmas campaign that uses body image marketing tactics. Although this cost the company billions of dollars worth in value back in 2019, this did not cause the company to go under and the loyalty of its users remain although waning. Even after many controversies that involved their hardware and bad publicity, the company seems to stay afloat but struggling. Trying to win back their users and gain new customers, they recently added a visual gamification experience of their rides reminiscent of **Mario Kart**. However, the gamifying of exercise has been a pillar in **Peloton's** strategy to win and keep users from the beginning. The author wonders whether **Peloton** is building from a proven working strategy that gamification works for user motivation or their user data shows they needed to amplify the *gamification* strategy by deploying a video game approach on design. 
+
+The **Bike+** is the second iteration of Peloton's first indoor stationary bike. The *Peloton Bike* features a Wi-Fi enabled touchscreen tablet attached to the bike that enables the user to take on-demand or live streamed classes. It is important to note that Peloton charges for a monthly subscription fee for their members to access classes and use the features of the bike. The Bike itself will work like a regular stationary bike without the membership, however users are unable to join classes and track their performance making the tablet almost useless without the the subscription. The user is onboarded by taking personal information such as weight, height, location, name and has the option to connect their social media accounts. The user has the ability to add and follow users, and video call with them during a ride thanks to the built-in camera and mic. This also allows the rider to compete with other users taking the classes with them by way of a live leaderboard that ranks riders in a class based on their real-time performance. Apart from the leaderboard, the tablet is also filled with different metrics the user can choose to keep on or hide.The users can also track their heart rate on screen by using the Peloton's chest strap heart monitor or their personal health monitoring watches. Measurements such as how hard they have been pedaling or how much power is being exerted is also a constant part of the script the coaches have. Peloton is also known for their classes because of the coaches. Some of whom have built their own niche communities that caters to different user personalities with some having a cult-like following. Just from the physical product alone, one can assume how much work is done on the user research and experience design to come up with the features the bike has. It is fascinating to see how deliberate the application of the intent the company has, and how they plan to retain their users business.
+
+According to *Nacke and Deterding*, **Gamification** is the use of games in none gaming environments to motivate users in applications or software as a service.[@DeterdingEtal2011] It's been utilized to increase user engagement through a deliberate *human-centered design*.[@BastanfardEtal2018] For a company that relies heavily on user engagement and motivation to sustain the business, it's important for *Peloton* to utilize this strategy in order to maintain it's users interest. This would mean that membership renewal would continue if the user is motivated to follow through the programs and start new classes. This report looks into the performance of two users who have owned the *Peloton Bike+* for almost two years and use their cycling performance data to determine whether the gamification strategy **Peloton** utilizes were effective in *user motivation and retention*. Understanding the built in gamification design of it's classes, the author wants to highlight the application of **Motivational Affordance** and showcase it's effects on user's performance. The author identifies the metrics as the motivational affordances designed in to the system as features that help the user track their performance and increase motivation. These metrics gathered in the form of datasets will be shown in graphs created using the programming language [@citeR], where the data gathered from Peloton's platform will be cleaned, analyzed and visualized.
+
+# Data
+
+## Data Source and Cleaning
+The datasets were pulled from the membership portal of the Peloton application as a downloadable csv file with over 379 observations and 18 variables per file. The datasets were reduced to a smaller observation and variable to focus on cycling data through data cleaning. The focus of this dataset was to provide insight on relationship between performance and design of the product. Due to the nature of the dataset being a results summary of the user performance recorded on the bike, the dataset can be limited on information and insight it can provide as it can only speak for the results of the users. The data cleaning was processed on an open source platform called 'R'[@citeR]. The data was cleaned using the package 'Janitor' [@Janitor] and filtered to create new data frames using packages 'Dplyr' [@Dplyr], 'TidyR' [@TidyR], 'Tidyverse' [@Tidyverse] and 'ReadR' [@Readr].
+
+For the purpose of having a meaningful analysis,the dataset was controlled down to focus on just the output of cycling classes. Cycling became the focal point of this report as this is the main selling point of the Bike+. The dataset is concentrated on the information regarding this exercise output rather than interpreting the dataset as whole where other exercise classes where included. It is also worth noting that other exercise programs cannot be accurately tracked as they are exercise programs done on a mat away from the bike that has user performance tracking capabilities. These tracking capabilities are dependent on the user engaging with the Bike+ and tracks physical activity through a heart monitor provided. 
+
+## Data & Implications
+
+The datasets were generated by Peloton by tracking user performance and is compiled and extracted as a csv file. It contains information on any class started by the user and records the users performance. The datasets were trimmed to focus on *Cycling* outputs as this observation has the most variables that involves tracking user performance. These observations were: **Total Output, Avg. Watts, Avg. Resistance, Avg Cadence and Avg. Heart Rate**. In order to understand the variables that the datasets have, we first need to understand how Peloton and the Bike+ is able to track and record the user performance. First, let's understand how Peloton calculates power output or *Watts*. According to their website [@Peloton-Watts] *each bike is equipped with hall effect sensors for measuring flywheel rotational speed (to capture cadence) and resistance. The sensors reference the Output values on the sensor control board and communicate these values to the peloton HD touchscreen multiple times per second during a ride*. Moreover, Peloton also goes into detail how they measure the Output and how to understand the metrics they produce on the screen. On the webpage that discusses metrics [@Peloton-Metrics] it is mentioned that **Output** is measured in Watts and can be used interchangeably. **Watts** is defined as how much power you are exerting at any point in time. One can increase output by increasing *cadence*, *resistance* or both. [@Peloton-Metrics] **Cadence** is how fast one pedals and is measured in **RPMs** or rotations per minute. **Resistance** is the level of difficulty measured by percentage of the maximum resistance (0-100 percent). Resistance can be set by turning the red knob on the Bike+ to the right to increase it and to the left to decrease it.[@Peloton-Metrics] The lower the resistance, the lighter the pedals would feel and the higher the resistance, the heavier the pedaling would feel to the user. **Total Output** measure in **Kilojoules or KJ**, is how much work the user has done over the whole ride. This is calculated by taking the *average output times the number of seconds in the ride divided by 1,000*. If the user wants to increase their total output and move up the leaderboard, the total output has to be consistently high throughout the whole ride. This may mean increasing the resistance beyond what the coach recommends. [@Peloton-Metrics]
+
+Due to the exclusive and private nature of the datasets only accessible through the member's account portal, the datasets are limited to show just the performance of two users in a household sharing one Bike+ and can only be compared to each other. It is notable how **Peloton** made it easy for users to access their own data and be able to download directly as a csv file. The author believes this plays into the self-competition and performance obsession the Bike+ perpetuates in the user to induce motivation. To prove this, there is even a **Shiny App** created to help users visualize their datasets and make meaning out of it that can be accessed seen below, in Figure 1. The Bike+ not only has a big screen dedicated to show the users real time performance, it also allows the user to pull their own data and track their performance. These measurement features can be considered one of the **Motivational Affordances** designed into the system.  Moreover, this may indicate a very thorough **Persona** building done by their design research team. Persona is *a fictional, yet realistic description of a typical or target user of the product*.[@NielsenNormanGroup] Based from this feature, we can speculate that one of the identities or description created for Peloton's persona is someone who has a tendency to obsess with numbers and metrics. This Persona would then have a higher inclination to interact and respond to the affordance feature created, and in this case these would be the metrics shown on the tablet. This may also be other forms of measurement Peloton deploys so the company can elicit performance and meet the goal of motivating the user. This can be measured by how often a user goes on the Bike+ and takes a class. While *Self-Competition* can be measured by the progress a user has when they are consciously removing the leaderboard and metrics data on the screen. The table in figure 1 shows an overview of the dataset that has been cleaned to focus on *Cycling Outputs* of the two users and will be the base dataset where graphs created to visualize the information gathered. 
+
+```{r Shiny App, fig.cap="Shiny App", echo = FALSE}
+# knitr::include_app("https://arraycgh.shinyapps.io/crushing_it/"
+#                  ,height = "600px")
+```
+
+#Results
+This is where we can see the datasets visualized in graphs. 
+
+```{r retrieval, include=FALSE}
+# Read .csv files from Inputs folder
+# user1_data <- read_csv(here("~/Desktop/user1.csv"))
+# user2_data <- read_csv(here("~/Desktop/user2.csv"))
+```
+
+```{r graph code, include=FALSE}
+# user1_data <- tibble(total_output = runif(49, c(43, 43), c(310,310)),
+#                  date = c(seq(as.Date("2020-08-11"), as.Date("2020-08-18"), by = "days"),
+#                            seq(as.Date("2021-04-12"), as.Date("2021-04-22"), by = "days"),
+#                            seq(as.Date("2022-02-17"), as.Date("2022-03-18"), by = "days")),
+#                  group = ifelse(lubridate::date(year) %in% c(2020,2021,2022), "2020-2021", "2021-2022"),
+#                  date = lubridate::date(days))
+
+
+
+# ggplot(user1_data, aes(x = dates, y = total_output, fill = group)) +
+#     geom_bar(stat = 'identity', position = position_dodge()) +
+#     scale_x_continuous(labels = paste0(1:12, "/2020 - 2021", "\n", 1:12, "/2021 - 2022"),
+#                        breaks = 1:12) +
+#     scale_fill_manual(values = c("purple", "navy")) +
+#     theme_classic() +
+#     theme(legend.title = element_blank(),
+#           axis.text = element_text(size = 10))
+
+```
+
+# Discussion
+
+**Gamification** has been increasingly popular as a design feature in the last couple of years. According to Bruhlman et al, paper on the effects of individual gamification elements on intrinsic motivation and performance, the attempts to apply games' motivational potential to various non-gaming context might foster user engagement.[@BruhlmannEtal2017] As defined by Deterding et al, **Gamification** is the use of game design elements in non-game contexts.[@DeterdingEtal2011] Nowadays, it is even utilized by social media applications where users are rewarded with a point system based from their content engagement. These points have monetary value as it can be used to pay for transactions at participating retailers.This reward practice is most commonly associated with gamification through the use of points, levels and leaderboards which may promote user behavior in various contexts.[@Hamari2014, @Seaborn2015] However, several research cautioned on the over reliance on these game elements as it may diminish the intrinsic interest of the user that may lead to less engagement.[@DeterdingEtal2011, @Hamari2014,  @Seaborn2015] However, it is also argued that a well thought out implementation of game elements may improve intrinsic motivation by satisfying users' innate psychological needs for autonomy, competence and relatedness.[@Francisco2013, @Deterding2014] Deterding further suggests that in order to understand the psychological mechanisms underlying gamification, the effects of individual game design elements on user motivation should be studied.[@Deterding2011] In a paper that Ping Zhang wrote on reasons information and communication design technology uses, he discusses the concept of **Motivational Affordance**. He defines this to be the properties of an object that determine whether and how these affordances affect one's motivational needs.Zhang suggests that direction implies that behavior has purpose, "aimed or guided toward achieving some particular goal or avoiding some particular situations". [@Zhang2008] This is an interesting take on affordances and a thoughtful use of design to create an outcome. Affordance is a very common concept in *User Experience Design* and is considered a design principle. Affordance is described as the actionable properties between the object and an actor/user. [@Norman1999] There are many examples of affordances and a common one would be the handle of a mug. What is interesting about affordance is it may not always be obvious to the user whether the action they are taking was designed to have the outcome or not. Zhang suggests that using a technology that satisfies motivational needs elicits enjoyment thus wanting more. This then becomes the ultimate goal of the design, to achieve motivational affordance so that users would be inclined to not just use it but also believe they cannot live without it. [@Zhang2008] 
+
+Emanuel Hurych best describes the term **Self-competition** in his paper discussing *Self-Competition Versus Internal Competition* as competing with oneself. In his paper he describes self-competition to be based on accepting a challenge. He says that it could be a very important motive for a person to reach a chosen point and prepare for it, he even uses the sport Triathlon as an example.[@Hurych2009] This is interesting to note as *triathletes do not compete with rivals but rather with time*. This is what Hurych believes to be a great example of self-competition or self-reflexive competition. Understanding the occurrence of self-competition, the author believes that the same experience is elicited by the *motivational affordances* Peloton designed into their system. Based from our gathered data, we can see that both users have significantly made progress based from the increase in their *Total Output* over a period of 3 months without needing to constantly participate in live classes or challenges that allows for inter-user competition during rides. Just like the triathletes in competition with time and their past performance, the users emulate the same. Self-competition then becomes an integral part of Peloton's artillery of features to utilize to keep the users coming back. When a user is motivated by their own performance and progress, users are more likely to follow through with more classes which then in turn become more business for Peloton as the user will continue to extend their membership. This shows how user **Self-Competition** is a by product of Peloton's **Motivational Affordances**. However, this is not sufficient enough to sustain a business model based on user engagement. Based from the sporadic workouts the users have in a span of almost two years, the users have only worked out with the Peloton in total of 378-9 each. This may mean that despite the efforts of the company to continue to build user engagement by motivating them through improving their performance, it's not enough to hold users attention and does not translate to commitment. 
+
+## Data Strengths and Weaknesses
+
+One of the biggest weakness of the datasets were the limited sample of user data. The user data is only accessible through an active users account, and because the author is only able to access two datasets, the information may not speak for users with different performance outcomes. These dataset are only able to draw conclusions based on two users. However, the author argues that despite the lack in user sample size, there is enough data gathered in over two years to make significant analysis on. The author also believes that the dataset contains a lot of relevant user information to be able to draw many different analysis and can be utilized in many ways even for just one user data. The data Peloton gathers from their user is relevant to their business and product research that one user data can be analyzed for different purposes. The report focused on just the cycling data which is only one aspect of the work outs that can be done with Peloton. This report also does not include data on newly released features such as the **Lane Break** which is the *Video Game* simulated rides recently released on the Bike+ that furthers the *gamification* of their rides. There is also a new hardware released by the company meant to track users performance through a camera that has an AI to assist users in strength training classes. If there is anything Peloton is good at, it's their ability to hone in on their user personas to create more features catering to assumed needs their users have. Peloton's success relies on their users attention and the longer they can hold the attention the longer they can stay in the game, be it through *novelty of new hardware and features or invisible user experience design*.  
+
+## Weaknesses and Next Steps
+
+The author hopes to continue to analyze the user performance data, and to include more of the newly integrated features to base the analysis on. Ii would be interesting to know how the performance differs for the Lane Break outputs or if it yields similar results and how that influences Peloton's decision on what feature and experience to create. 
+
+
+\newpage
+
+\appendix
+
+# Appendix {-}
+
+**Gamification** - The use of games in none gaming environments to motivate users in applications or software as a service.[@DeterdingEtal2011] 
+
+**Bike+** - Peloton's second version of their stationary indoor Bike. 
+
+**Leaderboard** - Peloton's built in active user ranking that rates users according to real-time performance. 
+
+**Watts** - Is defined as how much power you are exerting at any point in time. One can increase output by increasing *cadence*, *resistance* or both. [@Peloton-Metrics]
+
+**Cadence** - Is how fast one pedals and is measured in RPMs or rotations per minute.[@Peloton-Metrics]
+
+**Resistance** - Is the level of difficulty measured by percentage of the maximum resistance (0-100 percent). Resistance can be set by turning the red knob on the Bike+ to the right to increase it and to the left to decrease it.[@Peloton-Metrics]
+
+**Output** - Is measured in Watts and can be used interchangeably. Watts is defined as how much power you are exerting at any point in time.[@Peloton-Metrics]
+
+**Total Output** - measure in Kilojoules or KJ, is how much work the user has done over the whole ride. This is calculated by taking the average output times the number of seconds in the ride divided by 1,000.[@Peloton-Metrics]
+
+**Persona** - Is a fictional, yet realistic description of a typical or target user of the product.[@NielsenNormanGroup]
+
+**Affordance** - Refer to the actionable properties between the world and an actor (a person or animal). [@JJGibson]
+
+**Motivational Affordance** - Comprise of properties of an object that determine whether and how it support one's motivational needs.[@Zhang2008]
+
+**Self-Competition** - Competition within oneself, is based on accepting a challenge. It could be a very important motive for a person to reach a chosen point and prepare for it. [@Hurych2009]
+
+
+\newpage
+
+# References
