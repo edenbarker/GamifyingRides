@@ -8,9 +8,9 @@ This repository contains all of the files used by the author to write the report
 
 It is organised as follows:
 
-###File Structure
+File Structure
 
-##Inputs
+Inputs
 The Inputs folder contains the raw data and .csv files needed to create our graphs and table, as well as the relevant literature referenced in the report.
 
 user1_data.csv: dataset on user 1 Cycling performance data
@@ -20,10 +20,10 @@ user2_data.csv: dataset on user 2 Cycling performance data
 Literature Folder:
 Contains the relevant literature that was available in PDF format used in the report.
 
-##Scripts
+Scripts
 The Scripts folder contains the .R scripts used to process the .csv files in order to create our graphs and table
 
-##Outputs
+Outputs
 The outputs folder contains the final version of the report
 
 GamifyingRides.Rmd: The R Markdown script used to create the final report
