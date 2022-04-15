@@ -56,12 +56,15 @@ Due to the exclusive and private nature of the datasets only accessible through 
 ```
 
 #Results
+
 This is where we can see the datasets visualized in graphs. 
 
 ```{r retrieval, include=FALSE}
 # Read .csv files from Inputs folder
-# user1_data <- read_csv(here("~/Desktop/user1.csv"))
-# user2_data <- read_csv(here("~/Desktop/user2.csv"))
+user1 <- read_csv("https://raw.githubusercontent.com/edenbarker/peloton_dataset/main/user1.csv")
+
+user2 <- read_csv("https://raw.githubusercontent.com/edenbarker/peloton_dataset/main/user2.csv")
+
 ```
 
 ```{r graph code, include=FALSE}

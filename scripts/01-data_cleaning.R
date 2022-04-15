@@ -7,7 +7,6 @@
 # Pre-requisites: 
 # - Need to have access to a Peloton member account, download the member data under workouts
 # - Save dataset in inputs/data
-# - Don't forget to gitignore it!
 
 
 #### Workspace setup ####
@@ -18,7 +17,7 @@ library(knitr)
 library(readr)
 
 # Read in the raw data for user1
-user1 <- read_csv("user1.csv")
+user1 <- read_csv("https://raw.githubusercontent.com/edenbarker/peloton_dataset/main/user1.csv")
 View(user1)
 
 # Cleaning data names and shrinking data frame
@@ -37,12 +36,8 @@ view(user1_data)
 # Selecting rows where Fitness Discipline is equal to 'Cycling' as workout focus
 user1_data[user1_data$FitnessDiscipline == 'Cycling']
 
-
-
-
-
 # Read in the raw data for user2
-user2 <- read_csv("user2.csv")
+user2 <- read_csv("https://raw.githubusercontent.com/edenbarker/peloton_dataset/main/user2.csv")
 View(user2)
 
 # Cleaning data names and shrinking data frame
