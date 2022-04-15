@@ -18,7 +18,7 @@ library(knitr)
 library(readr)
 
 # Read in the raw data for user1
-user1 <- read_csv("~/Desktop/user1.csv")
+user1 <- read_csv("user1.csv")
 View(user1)
 
 # Cleaning data names and shrinking data frame
@@ -42,7 +42,7 @@ user1_data[user1_data$FitnessDiscipline == 'Cycling']
 
 
 # Read in the raw data for user2
-user2 <- read_csv("~/Desktop/user2.csv")
+user2 <- read_csv("user2.csv")
 View(user2)
 
 # Cleaning data names and shrinking data frame
