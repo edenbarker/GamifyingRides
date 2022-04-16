@@ -4,9 +4,9 @@
 # Data: 30 March 2022
 # Contact: eden.barker@mail.utoronto.ca
 # License: MIT
-# Pre-requisites: 
-# - Need to have access to a Peloton member account, download the member data under workouts
-# - Save dataset in inputs/data
+# Pre-requisites:
+#   - Need to have access to a Peloton member account, download the member data under workouts
+#   - Save dataset in inputs/data
 
 
 #### Workspace setup ####
@@ -34,7 +34,7 @@ user1df <-
 view(user1df)
 
 # Selecting rows where Fitness Discipline is equal to 'Cycling' as workout focus
-user1df[user1df$fitness_discipline == 'Cycling']
+user1df[user1df$fitness_discipline == 'Cycling'] 
 
 # Read in the raw data for user2
 user2 <- read_csv("https://raw.githubusercontent.com/edenbarker/peloton_dataset/main/user2.csv")

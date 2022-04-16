@@ -15,25 +15,27 @@ bibliography: references.bib
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 options(repos = list(CRAN="http://cran.rstudio.com/"))
-# install.packages("ggplot2")
-# install.packages("dplyr")
-# install.packages("tidyverse")
-# install.packages("janitor")
-# install.packages("tidyr")
-# install.packages("knitr")
-# install.packages("gt")
-# install.packages("glue")
-# install.packages("kableExtra")
-# install.packages("readr")
-# library(ggplot2)
-# library(dplyr)
-# library(tidyverse)
-# library(janitor)
-# library(knitr)
-# library(gt)
-# library(glue)
-# library(kableExtra)
-# library(readr)
+install.packages("ggplot2")
+install.packages("dplyr")
+install.packages("tidyverse")
+install.packages("janitor")
+install.packages("tidyr")
+install.packages("knitr")
+install.packages("gt")
+install.packages("glue")
+install.packages("kableExtra")
+install.packages("readr")
+install.packages("RColorBrewer")
+library(ggplot2)
+library(dplyr)
+library(tidyverse)
+library(janitor)
+library(knitr)
+library(gt)
+library(glue)
+library(kableExtra)
+library(readr)
+library(RColorBrewer)
 ```
 
 # Introduction
@@ -59,71 +61,34 @@ Due to the exclusive and private nature of the datasets only accessible through 
 
 \newpage
 
-```{r Read Data, include=FALSE}
-# # Read .csv files from Inputs folder
-# user1 <- read.csv("https://raw.githubusercontent.com/edenbarker/peloton_dataset/main/user1.csv")
-# # Cleaning data names and shrinking data frame
-# cleaned_user1 <-
-#   clean_names(user1)
-# cleaned_user1
-# 
-# user1df <- 
-#   cleaned_user1 %>% 
-#   select("workout_timestamp", "length_minutes", "fitness_discipline",
-#          "type", "title", "total_output", "avg_watts", "avg_resistance", 
-#          "avg_cadence_rpm", "avg_speed_kph", "distance_km", "avg_heartrate") |>
-#   na.omit(cleaned_user1) #removed NA rows
-# view(user1df)
-# 
-# # Selecting rows where Fitness Discipline is equal to 'Cycling' as workout focus
-# user1df[user1df$fitness_discipline == 'Cycling']
-# 
-# 
-# user2 <- read.csv("https://raw.githubusercontent.com/edenbarker/peloton_dataset/main/user2.csv")
-# # Cleaning data names and shrinking data frame
-# cleaned_user2 <-
-#   clean_names(user2)
-# cleaned_user2
-# 
-# user2df <- 
-#   cleaned_user2 %>% 
-#   select("workout_timestamp", "length_minutes", "fitness_discipline",
-#          "type", "title", "total_output", "avg_watts", "avg_resistance", 
-#          "avg_cadence_rpm", "avg_speed_kph", "distance_km", "avg_heartrate") |>
-#   na.omit(cleaned_user2) #removed NA rows
-# view(user2df)
-# 
-# # Selecting rows where Fitness Discipline is equal to 'Cycling' as workout focus
-# user1df[user1df$fitness_discipline == 'Cycling']
-
-```
 ```{r Table, fig.cap="Overview of Data Sets", echo = FALSE}
-# Define the start and end dates for the data range
-start_date <- "2021-04-01"
-end_date <- "2021-04-30"
-
-# Create a gt table based on cleaned user1 data under user1df
-
-user1df %>%
-  filter(date >= start_date & date <= end_date) %>%
-  select('cycling') %>%
-  gt() %>%
-  tab_header(
-    title = "User 1 Dataset Overview",
-    subtitle = glue("{start_date} to {end_date}")
-  ) %>%
-  fmt_date(
-    columns = date,
-    date_style = 3
-  ) %>%
-  fmt_number(
-    columns = c(total_output, avg_watts, avg_cadence, avg_resistance),
-    suffixing = TRUE
-  )
+# # Define the start and end dates for the data range
+# start_date <- "2021-04-01"
+# end_date <- "2021-04-30"
+# 
+# # Create a gt table based on cleaned user1 data under user1df
+# 
+# user1df %>%
+#   format(as.POSIXct(user1df,format='%m/%d/%Y %H:%M:%S'),format='%m/%d/%Y')
+#   filter(date >= start_date & date <= end_date) %>%
+#   select('cycling') %>%
+#   gt() %>%
+#   tab_header(
+#     title = "User 1 Dataset Overview",
+#     subtitle = glue("{start_date} to {end_date}")
+#   ) %>%
+#   fmt_date(
+#     columns = date,
+#     date_style = 3
+#   ) %>%
+#   fmt_number(
+#     columns = c('workout_timestamp','total_output', 'avg_watts', 'avg_cadence', 'avg_resistance'),
+#     suffixing = TRUE
+#   )
 ```
 # Figure 1. Shiny App Preview
 ```{r Shiny App, fig.cap="Shiny App", echo = FALSE}
-# webshot::install_phantomjs()
+webshot::install_phantomjs()
 knitr::include_app("https://arraycgh.shinyapps.io/crushing_it/"
                  ,height = "600px")
 ```
@@ -134,31 +99,71 @@ This is where we can see the datasets visualized in graphs.
 
 ```{r retrieval, include=FALSE}
 # # Read .csv files from Inputs folder
-# user1 <- read_csv("https://raw.githubusercontent.com/edenbarker/peloton_dataset/main/user1.csv")
-# 
-# user2 <- read_csv("https://raw.githubusercontent.com/edenbarker/peloton_dataset/main/user2.csv")
+user1 <- read.csv("https://raw.githubusercontent.com/edenbarker/peloton_dataset/main/user1.csv")
+
+user2 <- read.csv("https://raw.githubusercontent.com/edenbarker/peloton_dataset/main/user2.csv")
 
 ```
 
-```{r graph code, include=FALSE}
-# user1_data <- tibble(total_output = runif(49, c(43, 43), c(310,310)),
-#                  date = c(seq(as.Date("2020-08-11"), as.Date("2020-08-18"), by = "days"),
-#                            seq(as.Date("2021-04-12"), as.Date("2021-04-22"), by = "days"),
-#                            seq(as.Date("2022-02-17"), as.Date("2022-03-18"), by = "days")),
-#                  group = ifelse(lubridate::date(year) %in% c(2020,2021,2022), "2020-2021", "2021-2022"),
-#                  date = lubridate::date(days))
+```{r Graphs Code, include=FALSE}
+#Get dataset
+user1 <- read.csv("https://raw.githubusercontent.com/edenbarker/peloton_dataset/main/user1.csv")
 
+cleaned_user1 <-
+  clean_names(user1)
+cleaned_user1
 
+user1df <- 
+  cleaned_user1 %>% 
+  select("workout_timestamp", "length_minutes", "fitness_discipline",
+         "type", "title", "total_output", "avg_watts", "avg_resistance", 
+         "avg_cadence_rpm", "avg_speed_kph", "distance_km", "avg_heartrate") |>
+  na.omit(cleaned_user1) #removed NA rows
+view(user1df)
 
-# ggplot(user1_data, aes(x = dates, y = total_output, fill = group)) +
-#     geom_bar(stat = 'identity', position = position_dodge()) +
-#     scale_x_continuous(labels = paste0(1:12, "/2020 - 2021", "\n", 1:12, "/2021 - 2022"),
-#                        breaks = 1:12) +
-#     scale_fill_manual(values = c("purple", "navy")) +
-#     theme_classic() +
-#     theme(legend.title = element_blank(),
-#           axis.text = element_text(size = 10))
+user1df[user1df$fitness_discipline == 'Cycling',] 
+```
 
+```{r Graph Code, fig.cap="Graphs", echo = FALSE}
+# Graph for User1
+user1df |>
+   ggplot (mapping = aes(x = type, group = total_output, fill = length_minutes)) +
+  geom_dotplot(method = 'histodot', alpha = 0.3, binwidth = 1) +
+  theme_minimal() +
+  labs(x = "Type of Class Taken",
+       y = "Length of Class in Minutes",
+       fill = "Total Output",
+       caption = "User1 Peloton Dataset") +
+  scale_color_brewer(palette = "Set1")
+```
+
+```{r Graphs Code, include=FALSE}
+user2 <- read.csv("https://raw.githubusercontent.com/edenbarker/peloton_dataset/main/user2.csv")
+
+cleaned_user2 <-
+  clean_names(user2)
+cleaned_user2
+
+user2df <- 
+  cleaned_user2 %>% 
+  select("workout_timestamp", "length_minutes", "fitness_discipline",
+         "type", "title", "total_output", "avg_watts", "avg_resistance", 
+         "avg_cadence_rpm", "avg_speed_kph", "distance_km", "avg_heartrate") |>
+  na.omit(cleaned_user2) #removed NA rows
+view(user2df)
+
+#user2df[user2df$fitness_discipline == 'Cycling',] 
+```
+
+```{r Graph Code, fig.cap="Graphs", echo = FALSE}
+user2df_data |> 
+  filter(fitness_discipline == "Cycling") |> 
+  ggplot(mapping = aes(x = type)) +
+  geom_bar(position = "dodge") +
+  theme_minimal() +
+  labs(x = "Tyep of Class Taken",
+       y = "Number of occurrences",
+       caption = "Data source: Peloton")
 ```
 
 # Discussion
