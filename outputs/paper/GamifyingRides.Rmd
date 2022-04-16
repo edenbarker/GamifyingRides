@@ -118,11 +118,11 @@ user1df[user1df$fitness_discipline == 'Cycling',]
 # Graph for User1
 user1df |>
    ggplot (mapping = aes(x = type, group = total_output, fill = length_minutes)) +
-  geom_dotplot(method = 'histodot', alpha = 0.3, binwidth = 1) +
+  geom_dotplot(method = 'histodot', alpha = 0.3, binwidth = 1.5) +
   theme_minimal() +
   labs(x = "Type of Class Taken",
-       y = "Length of Class in Minutes",
-       fill = "Total Output",
+       y = "Total Output",
+       fill = "Length of Class in Minutes",
        caption = "User1 Peloton Dataset") +
   scale_color_brewer(palette = "Set1")
 ```
@@ -150,12 +150,12 @@ user2df[user2df$fitness_discipline == 'Cycling',]
 
 user2df |>
    ggplot (mapping = aes(x = type, group = total_output, fill = length_minutes)) +
-  geom_dotplot(method = 'histodot', alpha = 0.3, binwidth = 1) +
+  geom_dotplot(method = 'histodot', alpha = 0.3, binwidth = 1.5) +
   theme_minimal() +
   labs(x = "Type of Class Taken",
-       y = "Length of Class in Minutes",
-       fill = "Total Output",
-       caption = "User1 Peloton Dataset") +
+       y = "Total Output",
+       fill = "Length of Class in Minutes",
+       caption = "User2 Peloton Dataset") +
   scale_color_brewer(palette = "Set1")
 ```
 
