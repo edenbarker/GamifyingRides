@@ -25,16 +25,16 @@ cleaned_user1 <-
   clean_names(user1)
 cleaned_user1
 
-user1_data <- 
+user1df <- 
   cleaned_user1 %>% 
-  select("Workout Timestamp", "Length (minutes)", "Fitness Discipline",
-         "Type", "Title", "Total Output", "Avg. Watts", "Avg. Resistance", 
-         "Avg. Cadence (RPM)", "Avg. Speed (kph)", "Distance (km)", "Avg. Heartrate") |>
+  select("workout_timestamp", "length_minutes", "fitness_discipline",
+         "type", "title", "total_output", "avg_watts", "avg_resistance", 
+         "avg_cadence_rpm", "avg_speed_kph", "distance_km", "avg_heartrate") |>
   na.omit(cleaned_user1) #removed NA rows
-view(user1_data)
+view(user1df)
 
 # Selecting rows where Fitness Discipline is equal to 'Cycling' as workout focus
-user1_data[user1_data$FitnessDiscipline == 'Cycling']
+user1df[user1df$fitness_discipline == 'Cycling']
 
 # Read in the raw data for user2
 user2 <- read_csv("https://raw.githubusercontent.com/edenbarker/peloton_dataset/main/user2.csv")
@@ -45,15 +45,16 @@ cleaned_user2 <-
   clean_names(user2)
 cleaned_user2
 
-user2_data <- 
+user2df <- 
   cleaned_user2 %>% 
-  select("Workout Timestamp", "Length (minutes)", "Fitness Discipline",
-         "Type", "Title", "Total Output", "Avg. Watts", "Avg. Resistance", 
-         "Avg. Cadence (RPM)", "Avg. Speed (kph)", "Distance (km)", "Avg. Heartrate") |>
+  select("workout_timestamp", "length_minutes", "fitness_discipline",
+         "type", "title", "total_output", "avg_watts", "avg_resistance", 
+         "avg_cadence_rpm", "avg_speed_kph", "distance_km", "avg_heartrate") |>
   na.omit(cleaned_user2) #removed NA rows
-view(user2_data)
+view(user2df)
 
 # Selecting rows where Fitness Discipline is equal to 'Cycling' as workout focus
-user2_data[user2_data$FitnessDiscipline == 'Cycling']
+user1df[user1df$fitness_discipline == 'Cycling']
+
 
 #### End of Data Cleaning  ####
