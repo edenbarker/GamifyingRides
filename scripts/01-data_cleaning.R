@@ -17,7 +17,7 @@ library(knitr)
 library(readr)
 
 # Read in the raw data for user1
-user1 <- read_csv("https://raw.githubusercontent.com/edenbarker/peloton_dataset/main/user1.csv")
+user1 <- read_csv("https://raw.githubusercontent.com/edenbarker/peloton_dataset/main/Peloton%20User%201.csv")
 View(user1)
 
 # Cleaning data names and shrinking data frame
@@ -27,17 +27,23 @@ cleaned_user1
 
 user1df <- 
   cleaned_user1 %>% 
-  select("workout_timestamp", "length_minutes", "fitness_discipline",
+  select("date", "length_minutes", "fitness_discipline",
          "type", "title", "total_output", "avg_watts", "avg_resistance", 
-         "avg_cadence_rpm", "avg_speed_kph", "distance_km", "avg_heartrate") |>
+         "avg_cadence_rpm", "avg_speed_kph", "distance_km", "avg_heartrate") %>%
   na.omit(cleaned_user1) #removed NA rows
 view(user1df)
 
 # Selecting rows where Fitness Discipline is equal to 'Cycling' as workout focus
 user1df[user1df$fitness_discipline == 'Cycling'] 
 
+# Saving cleaned data
+write_csv(
+  x = user1df,
+  file = "user1df.csv")
+
+
 # Read in the raw data for user2
-user2 <- read_csv("https://raw.githubusercontent.com/edenbarker/peloton_dataset/main/user2.csv")
+user2 <- read_csv("https://raw.githubusercontent.com/edenbarker/peloton_dataset/main/Peloton%20User%202.csv")
 View(user2)
 
 # Cleaning data names and shrinking data frame
@@ -47,14 +53,18 @@ cleaned_user2
 
 user2df <- 
   cleaned_user2 %>% 
-  select("workout_timestamp", "length_minutes", "fitness_discipline",
+  select("date", "length_minutes", "fitness_discipline",
          "type", "title", "total_output", "avg_watts", "avg_resistance", 
-         "avg_cadence_rpm", "avg_speed_kph", "distance_km", "avg_heartrate") |>
+         "avg_cadence_rpm", "avg_speed_kph", "distance_km", "avg_heartrate") %>%
   na.omit(cleaned_user2) #removed NA rows
 view(user2df)
 
 # Selecting rows where Fitness Discipline is equal to 'Cycling' as workout focus
 user1df[user1df$fitness_discipline == 'Cycling']
 
+# Saving cleaned data
+write_csv(
+  x = user1df,
+  file = "user2df.csv")
 
 #### End of Data Cleaning  ####
