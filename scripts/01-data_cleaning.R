@@ -27,7 +27,7 @@ cleaned_user1
 
 user1df <- 
   cleaned_user1 %>% 
-  select("date", "length_minutes", "fitness_discipline",
+  select("date", "length_minutes", "instructor_name", "fitness_discipline",
          "type", "title", "total_output", "avg_watts", "avg_resistance", 
          "avg_cadence_rpm", "avg_speed_kph", "distance_km", "avg_heartrate") %>%
   na.omit(cleaned_user1) #removed NA rows
@@ -53,7 +53,7 @@ cleaned_user2
 
 user2df <- 
   cleaned_user2 %>% 
-  select("date", "length_minutes", "fitness_discipline",
+  select("date", "length_minutes", "instructor_name", "fitness_discipline",
          "type", "title", "total_output", "avg_watts", "avg_resistance", 
          "avg_cadence_rpm", "avg_speed_kph", "distance_km", "avg_heartrate") %>%
   na.omit(cleaned_user2) #removed NA rows

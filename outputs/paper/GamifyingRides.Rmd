@@ -32,6 +32,7 @@ library(ggplot2)
 library(dplyr)
 library(tidyverse)
 library(janitor)
+library(tidyr)
 library(knitr)
 library(gt)
 library(glue)
@@ -86,6 +87,35 @@ user2df <- read_csv("https://raw.githubusercontent.com/edenbarker/GamifyingRides
 
 ```{r Graph Set 1 Code, fig.cap="Figure 1. Total Output Summary per Type of Class", echo = FALSE}
 # Graph for User1
+# Graph User 1 faceted
+user1df |> 
+  ggplot(mapping = aes(x = date, y = total_output, fill = type)) +
+  geom_bar(stat = "identity", position = position_dodge()) +
+  labs(x = "Workout Dates",
+       y = "Total Output",
+       color = "Class Type",
+       title = "User 1 Performance Data Per Length of Class in Minutes",
+       caption = "Data source: Peloton") +
+  coord_flip()+
+  facet_wrap(vars(length_minutes),
+             scales = "free_x")
+
+# Graph User 2 faceted
+user2df |> 
+  ggplot(mapping = aes(x = date, y = total_output, fill = type)) +
+  geom_bar(stat = "identity", position = position_dodge()) +
+  labs(x = "Workout Dates",
+       y = "Total Output",
+       color = "Class Type",
+       title = "User 2 Performance Data Per Length of Class in Minutes",
+       caption = "Data source: Peloton") +
+  coord_flip()+
+  facet_wrap(vars(length_minutes),
+             scales = "free_x")
+```
+
+```{r Graph Set 2 Code, fig.cap="Figure 2. User Performance Summary 2020-2022", echo = FALSE}
+# Graph for User1
 user1df |>
    ggplot (mapping = aes(x = type, group = total_output, fill = length_minutes)) +
   geom_dotplot(method = 'histodot', alpha = 0.3, binwidth = 1) +
@@ -111,31 +141,6 @@ user2df |>
 
 ```
 
-```{r Graph Set 2 Code, fig.cap="Figure 2. User Performance Summary 2020-2022", echo = FALSE}
-#Graph for User1
-user2df |>
-    ggplot(mapping = aes(x = date, fill = total_output)) +
-  geom_bar() +
-  theme_minimal() +
-  labs(x = "Workout Dates",
-       y = "type",
-       fill = "Total Output") +
-  facet_wrap(vars(length_minutes),
-             dir = "v",
-             scales = "free")
-
-#graph for user2
-user2df |>
-    ggplot(mapping = aes(x = date, fill = total_output)) +
-  geom_bar() +
-  theme_minimal() +
-  labs(x = "Workout Dates",
-       y = "type",
-       fill = "Total Output") +
-  facet_wrap(vars(length_minutes),
-             dir = "v",
-             scales = "free")
-```
 
 \newpage
 
