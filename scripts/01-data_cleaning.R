@@ -10,61 +10,59 @@
 
 
 #### Workspace setup ####
+install.packages("janitor")
+install.packages("tidyverse")
+install.packages("tidyr")
+install.packages("dplyr")
 library(tidyverse)
 library(janitor)
 library(tidyr)
-library(knitr)
-library(readr)
+library(dplyr)
 
 # Read in the raw data for user1
 userdata1 <- read.csv("https://raw.githubusercontent.com/edenbarker/peloton_dataset/main/Persona1.csv")
-View(user1)
+View(userdata1)
 
 # Cleaning data names and shrinking data frame
 cleaned_user1 <-
   clean_names(userdata1)
 cleaned_user1
+head(cleaned_user1)
 
-userdata1 <- 
+persona1 <- 
   cleaned_user1 %>% 
-  select("date", "length_minutes", "instructor_name", "fitness_discipline",
+  select("workout", "length_minutes", "instructor_name", "fitness_discipline",
          "type", "title", "total_output", "avg_watts", "avg_resistance", 
          "avg_cadence_rpm", "avg_speed_kph", "distance_km", "avg_heartrate") %>%
-  na.omit(cleaned_user1) #removed NA rows
-view(userdata1)
-
-# Selecting rows where Fitness Discipline is equal to 'Cycling' as workout focus
-userdata1[userdata1$fitness_discipline == 'Cycling'] 
+  na.omit(cleaned_user1) #removed NA rows, these are workouts that are not tracked through personal health monitors
+  head(persona1)
 
 # Saving cleaned data
 write.csv(
-  x = userdata1,
-  file = "persona_1.csv")
+  x = persona1,
+  file = "persona1.csv")
 
 
 # Read in the raw data for user2
 userdata2 <- read.csv("https://raw.githubusercontent.com/edenbarker/peloton_dataset/main/Persona2.csv")
-View(user2)
+View(userdata2)
 
 # Cleaning data names and shrinking data frame
 cleaned_user2 <-
-  clean_names(userdata2 )
+  clean_names(userdata2)
 cleaned_user2
 
-userdata2  <- 
+persona2 <- 
   cleaned_user2 %>% 
-  select("date", "length_minutes", "instructor_name", "fitness_discipline",
+  select("workout", "length_minutes", "instructor_name", "fitness_discipline",
          "type", "title", "total_output", "avg_watts", "avg_resistance", 
          "avg_cadence_rpm", "avg_speed_kph", "distance_km", "avg_heartrate") %>%
-  na.omit(cleaned_user2) #removed NA rows
-view(userdata2)
-
-# Selecting rows where Fitness Discipline is equal to 'Cycling' as workout focus
-userdata2[userdata2$fitness_discipline == 'Cycling']
+  na.omit(cleaned_user2) #removed NA rows, these are workouts that are not tracked through personal health monitors
+head(persona2)
 
 # Saving cleaned data
 write.csv(
-  x = userdata2,
-  file = "persona_2.csv")
+  x = persona2,
+  file = "persona2.csv")
 
 #### End of Data Cleaning  ####
