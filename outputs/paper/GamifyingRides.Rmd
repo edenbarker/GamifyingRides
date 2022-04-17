@@ -79,16 +79,16 @@ The first Graph in Figure 1 show the performance of User1 depending on the class
 
 ```{r retrieval, include=FALSE}
 # retrieve cleaned data from inputs folder 
-user1df <- read.csv("https://raw.githubusercontent.com/edenbarker/GamifyingRides/main/inputs/data/user1df.csv?token=GHSAT0AAAAAABS7OT4MAN5DFMVANKER3LNGYS3DU5Q")
+persona1 <- read.csv("https://raw.githubusercontent.com/edenbarker/GamifyingRides/main/inputs/data/Persona1.csv?token=GHSAT0AAAAAABS7OT4NCDCQIXVHF46HTMYOYS3QWPA")
 
-user2df <- read.csv("https://raw.githubusercontent.com/edenbarker/GamifyingRides/main/inputs/data/user2df.csv?token=GHSAT0AAAAAABS7OT4MKU27VREF4BIIICAGYS3DVGA")
+persona2 <- read.csv("https://raw.githubusercontent.com/edenbarker/GamifyingRides/main/inputs/data/Persona2.csv?token=GHSAT0AAAAAABS7OT4MOM24ACKZGPUJJWOIYS3QXBQ")
 
 ```
 
 ```{r Graph Set 1 Code, fig.cap="Figure 1. Total Output Summary per Type of Class", echo = FALSE}
 # Graph for User1
 # Graph User 1 faceted
-user1df |> 
+persona1 |> 
   ggplot(mapping = aes(x = date, y = total_output, fill = type)) +
   geom_bar(stat = "identity", position = position_dodge()) +
   labs(x = "Workout Dates",
@@ -97,11 +97,12 @@ user1df |>
        title = "User 1 Performance Data Per Length of Class in Minutes",
        caption = "Data source: Peloton") +
   coord_flip()+
-  facet_wrap(vars(length_minutes),
+  facet_wrap(instructor_name),
              scales = "free_x")
 
+
 # Graph User 2 faceted
-user2df |> 
+persona2 |> 
   ggplot(mapping = aes(x = date, y = total_output, fill = type)) +
   geom_bar(stat = "identity", position = position_dodge()) +
   labs(x = "Workout Dates",
@@ -116,7 +117,7 @@ user2df |>
 
 ```{r Graph Set 2 Code, fig.cap="Figure 2. User Performance Summary 2020-2022", echo = FALSE}
 # Graph for User1
-user1df |>
+persona1 |>
    ggplot (mapping = aes(x = type, group = total_output, fill = length_minutes)) +
   geom_dotplot(method = 'histodot', alpha = 0.3, binwidth = 1) +
   theme_minimal() +
@@ -128,7 +129,7 @@ user1df |>
   scale_color_brewer(palette = "Set1")
 
 # Graph for User2
-user2df |>
+persona2 |>
    ggplot (mapping = aes(x = type, group = total_output, fill = length_minutes)) +
   geom_dotplot(method = 'histodot', alpha = 0.3, binwidth = 1) +
   theme_minimal() +
