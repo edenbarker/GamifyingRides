@@ -79,9 +79,9 @@ The first Graph in Figure 1 show the performance of User1 depending on the class
 
 ```{r retrieval, include=FALSE}
 # retrieve cleaned data from inputs folder 
-user1df <- read_csv("https://raw.githubusercontent.com/edenbarker/GamifyingRides/main/inputs/data/user1df.csv?token=GHSAT0AAAAAABS7OT4MAN5DFMVANKER3LNGYS3DU5Q")
+user1df <- read.csv("https://raw.githubusercontent.com/edenbarker/GamifyingRides/main/inputs/data/user1df.csv?token=GHSAT0AAAAAABS7OT4MAN5DFMVANKER3LNGYS3DU5Q")
 
-user2df <- read_csv("https://raw.githubusercontent.com/edenbarker/GamifyingRides/main/inputs/data/user2df.csv?token=GHSAT0AAAAAABS7OT4MKU27VREF4BIIICAGYS3DVGA")
+user2df <- read.csv("https://raw.githubusercontent.com/edenbarker/GamifyingRides/main/inputs/data/user2df.csv?token=GHSAT0AAAAAABS7OT4MKU27VREF4BIIICAGYS3DVGA")
 
 ```
 
