@@ -92,7 +92,7 @@ knitr::include_graphics(path = "image4.png")
 
 # Shiny App Preview
 
-Please not that the Shiny App Embedded (\ref(fig:ShinyApp)) is not created by the author, but rather was found through researching resources to build the report. The particular link was found in an online forum and was supposedly shared by the Shiny App creator under the name: *muddybanksofthemiss* [@Reddit2015] three years ago. The purpose of the preview is to show how sophisticated some of the Peloton users in terms of tracking and understanding their performance.
+Please not that the Shiny App Embedded (\ref(fig:ShinyApp)) is not created by the author, but rather was found through researching resources to build the report. The particular link was found in an online forum and was supposedly shared by the Shiny App creator under the name: *muddybanksofthemiss* [@RedditEntry] three years ago. The purpose of the preview is to show how sophisticated some of the Peloton users in terms of tracking and understanding their performance.
 
 ```{r ShinyApp, fig.cap="Shiny App Preview", echo = FALSE}
 # A public Shiny app that visualizes user data was found online
@@ -126,8 +126,8 @@ persona1 |>
    labs(x = "Total Output",
         y = "Length of Class in Minutes",
         color = "Class Type",
-        title = "Figure 5: User 1 Performance Progress Summary from August 2020 to March 2022",
-        caption = "Data Source: Peloton") +
+        title = "User 1 Performance Progress Summary from August 2020 to March 2022",
+        caption = "Figure 5. User 1 Performance Summary from August 2020 to March 2022") +
   coord_flip() +
    facet_wrap(vars(year(workout)),
               scales = "free_x")
@@ -139,8 +139,8 @@ persona2 |>
    labs(x = "Total Output",
         y = "Length of Class in Minutes",
         color = "Class Type",
-        title = "Figure 6: User 1 Performance Progress Summary from August 2020 to March 2022",
-        caption = "Data Source: Peloton") +
+        title = "User 2 Performance Progress Summary from August 2020 to March 2022",
+        caption = "Figure 6. User 2 Performance Summary from August 2020 to March 2022") +
   coord_flip() +
    facet_wrap(vars(year(workout)),
               scales = "free_x")
@@ -157,8 +157,8 @@ persona1 |>
   labs(x = "Name of Coach",
        y = "Total Output",
        fill = "Type of Class",
-       title = "Figure 7: User 1 Performance Overview Per Instructor and Class Type",
-       caption = "Data Source: Peloton") +
+       title = "User 1 Performance Overview Per Instructor and Class Type",
+       caption = "Figure 7. User 1 Performance Summary Per Instructor and Class Type") +
   coord_flip() +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
   scale_color_brewer(palette = "Set1")
@@ -171,8 +171,8 @@ persona2 |>
   labs(x = "Name of Coach",
        y = "Total Output",
        fill = "Type of Class",
-       title = "Figure 8: User 2 Performance Overview Per Instructor and Class Type",
-       caption = "Data Source: Peloton") +
+       title = "User 2 Performance Overview Per Instructor and Class Type",
+       caption = "Figure 8. User 2 Performance Summary Per Instructor and Class Type") +
   coord_flip() +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
   scale_color_brewer(palette = "Set1")

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.4.19)  19 APR 2022 21:22
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.4.19)  19 APR 2022 21:28
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -721,14 +721,14 @@ Package rerunfilecheck Info: File `GamifyingRides.out' has not changed.
  ) 
 Here is how much of TeX's memory you used:
  12882 strings out of 480198
- 204072 string characters out of 5892402
+ 204073 string characters out of 5892402
  499498 words of memory out of 5000000
  30534 multiletter control sequences out of 15000+600000
  535981 words of font info for 80 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  60i,9n,63p,2938b,331s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {/Users/edenbarker/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/Users/edenbarker/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}</Users/edenbarker/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></Users/edenbarker/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/edenbarker/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx9.pfb></Users/edenbarker/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/edenbarker/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb></Users/edenbarker/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></Users/edenbarker/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr6.pfb></Users/edenbarker/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb></Users/edenbarker/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr9.pfb></Users/edenbarker/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb></Users/edenbarker/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt10.pfb>
-Output written on GamifyingRides.pdf (18 pages, 1392677 bytes).
+Output written on GamifyingRides.pdf (18 pages, 1392630 bytes).
 PDF statistics:
  354 PDF objects out of 1000 (max. 8388607)
  286 compressed objects within 3 object streams
