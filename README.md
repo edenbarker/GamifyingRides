@@ -32,3 +32,5 @@ GamifyingRides.Rmd: The R Markdown script used to create the final report
 GamifyingRidess.pdf: The pdf format of the report
 
 references.bib: contains all the references used in the report
+
+images folder includes a copy of images used in the report
