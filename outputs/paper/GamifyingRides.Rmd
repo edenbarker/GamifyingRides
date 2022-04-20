@@ -2,7 +2,7 @@
 title: "Peloton's Gamification of Rides can Help Improve User Performance and Motivation"
 subtitle: "A report on the role of motivational affordance as a user experience design and its effects"
 author: "Eden R. Barker"
-thanks: 'Code and data supporting this analysis is are available at: (https://github.com/edenbarker/GamifyingRides).'
+thanks: 'Code and data supporting this analysis are available at: (https://github.com/edenbarker/GamifyingRides).'
 date: "`r format(Sys.time(), '%d %B %Y')`"
 abstract: "This report discusses the role of gamification in Peloton's exercise programs using user performance data gathered from the platform. The data is analyzed and visualized using the programming language R. The results suggest the occurrence of self-competition as a by-product of the program's gamification strategy experienced by users through motivational affordances to improve user performance and motivation. This demonstrates an intended design for user experience that can be beneficial to the user through increase physical activity and the company through user membership retention.\\par \\textbf{Keywords:} Bike+, Peloton, Gamification, Exercise, Indoor Cycling, Leaderboard, Motivation, User Experience, Self-Competition, Motivational Affordance."
 
