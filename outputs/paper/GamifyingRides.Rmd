@@ -1,10 +1,10 @@
 ---
 title: "Peloton's Gamification of Rides can Help Improve User Performance and Motivation"
-subtitle: "A report on the role of motivational affordance as a user experience design and it's effects"
-author: "Eden Barker"
+subtitle: "A report on the role of motivational affordance as a user experience design and its effects"
+author: "Eden R. Barker"
 thanks: 'Code and data supporting this analysis is are available at: (https://github.com/edenbarker/GamifyingRides).'
 date: "`r format(Sys.time(), '%d %B %Y')`"
-abstract: "This report discusses the role of gamification in Peloton's exercise programs using user performance data gathered from the platform. The data is analyzed and visualized using the programming language R. The results suggest the occurrence of self-competition as a by-product of the program's gamification strategy experienced by users through motivational affordances to improve user performance and motivation. This demonstrates an intended design for user experience that can be beneficial to the user through increase physical activity and the company through user membership retention.\\par \\textbf{Keywords:} Bike+, Peloton, Gamification, Exercise, Indoor Cycling, Leaderboard, Motivation, User Engagement."
+abstract: "This report discusses the role of gamification in Peloton's exercise programs using user performance data gathered from the platform. The data is analyzed and visualized using the programming language R. The results suggest the occurrence of self-competition as a by-product of the program's gamification strategy experienced by users through motivational affordances to improve user performance and motivation. This demonstrates an intended design for user experience that can be beneficial to the user through increase physical activity and the company through user membership retention.\\par \\textbf{Keywords:} Bike+, Peloton, Gamification, Exercise, Indoor Cycling, Leaderboard, Motivation, User Experience, Self-Competition, Motivational Affordance."
 
 output:
   bookdown::pdf_document2:
@@ -22,13 +22,9 @@ install.packages("tidyverse")
 install.packages("janitor")
 install.packages("tidyr")
 install.packages("knitr")
-install.packages("gt")
-install.packages("glue")
 install.packages("kableExtra")
 install.packages("RColorBrewer")
-install.packages("lubridate")
-install.packages("tinytex")
-
+install.packages("Lubridate")
 
 library(ggplot2)
 library(dplyr)
@@ -36,32 +32,32 @@ library(tidyverse)
 library(janitor)
 library(tidyr)
 library(knitr)
-library(gt)
-library(glue)
 library(kableExtra)
 library(RColorBrewer)
 library(lubridate)
-library(tinytex)
-
 ```
 
 # Introduction
 
 When **Peloton** launched their product, they marketed it as a top of the line stationary bike with on-demand cycling classes that fosters community building and competition at the comfort of users homes. In just 8 years, **Peloton** was able to propel their company from a crowd-sourced funded startup to a billion dollar brand name. Along these are many controversies involving failed marketing campaigns that went under fire such as the viral Christmas campaign that uses body image marketing tactics. Although this cost the company billions of dollars worth in value back in 2019, this did not cause the company to go under and the loyalty of its users remain although waning. Even after many controversies that involved their hardware and bad publicity, the company seems to stay afloat but struggling. Trying to win back their users and gain new customers, they recently added a visual gamification experience of their rides reminiscent of **Mario Kart**. However, the gamifying of exercise has been a pillar in **Peloton's** strategy to win and keep users from the beginning. The author wonders whether **Peloton** is building from a proven working strategy that gamification works for user motivation or their user data shows they needed to amplify the *gamification* strategy by deploying a video game approach on design. 
 
-The **Bike+** is the second iteration of Peloton's first indoor stationary bike. The *Peloton Bike* features a Wi-Fi enabled touchscreen tablet attached to the bike that enables the user to take on-demand or live streamed classes. It is important to note that Peloton charges for a monthly subscription fee for their members to access classes and use the features of the bike on top of the Bike+ purchase. The Bike itself will work like a regular stationary bike without the membership, however users are unable to join classes and track their performance making the tablet almost useless without the the subscription. The user is onboarded by taking personal information such as weight, height, location, username and has the option to connect their social media accounts. The user has the ability to add and follow users, and video call with them during a ride thanks to the built-in camera and mic. This also allows the rider to compete with other users taking the classes with them by way of a live leaderboard that ranks riders in a class based on their real-time performance. Apart from the leaderboard, the tablet is also filled with different metrics the user can choose to keep on or hide. [See *Image 1* below \@ref ] The users can also track their heart rate on screen by using the Peloton's chest strap heart monitor or their personal health monitoring watches. Measurements such as how hard they have been pedaling or how much power is being exerted is also a constant part of the script the coaches have. Peloton is also known for their classes because of the coaches. Some of whom have built their own niche communities that caters to different user personalities with some having a cult-like following. Just from the physical product alone, one can assume how much work is done on the user research and experience design to come up with the features the Bike has. It is fascinating to see how deliberate the application of the intent the company has, and how they plan to retain their users business.
+The **Bike+** is the second iteration of Peloton's first indoor stationary bike. The *Peloton Bike* features a Wi-Fi enabled touchscreen tablet attached to the bike that enables the user to take on-demand or live streamed classes. It is important to note that Peloton charges for a monthly subscription fee for their members to access classes and use the features of the bike on top of the Bike+ purchase. The Bike itself will work like a regular stationary bike without the membership, however users are unable to join classes and track their performance making the tablet almost useless without the the subscription. The user is onboarded by taking personal information such as weight, height, location, username and has the option to connect their social media accounts. The user has the ability to add and follow users, and video call with them during a ride thanks to the built-in camera and mic. This also allows the rider to compete with other users taking the classes with them by way of a live leaderboard that ranks riders in a class based on their real-time performance. Apart from the leaderboard, the tablet is also filled with different metrics the user can choose to keep on or hide. See *Image 1* below (\@ref(fig:image1)) The users can also track their heart rate on screen by using the Peloton's chest strap heart monitor or their personal health monitoring watches. Measurements such as how hard they have been pedaling or how much power is being exerted is also a constant part of the script the coaches have. Peloton is also known for their classes because of the coaches. Some of whom have built their own niche communities that caters to different user personalities with some having a cult-like following. Just from the physical product alone, one can assume how much work is done on the user research and experience design to come up with the features the Bike has. It is fascinating to see how deliberate the application of the intent the company has, and how they plan to retain their users business.
 
-Image 1. Peloton Screen from Peloton Website [@PelotonBike]
-
-![Image of Peloton Screen on Tablet](Peloton_Screen_1.png)
-
+```{r image1 = 'asis', out.width="475px", fig.cap= "Peloton Screen", echo=FALSE}
+# The images are uploaded in github and is found in the images folder inside outputs folder
+# The code below allows for the image to show when knitted 
+download.file(url = "https://raw.githubusercontent.com/edenbarker/GamifyingRides/main/outputs/paper/images/Peloton%20Screen%201.png",
+          destfile = "image1.png",
+          mode = 'wb')
+knitr::include_graphics(path = "image1.png")
+```
 
 According to *Nacke and Deterding*, **Gamification** is the use of games in none gaming environments to motivate users in applications or software as a service.[@DeterdingEtal2011] It's been utilized to increase user engagement through a deliberate *human-centered design*.[@BastanfardEtal2018] For a company that relies heavily on user engagement and motivation to sustain the business, it's important for *Peloton* to utilize this strategy in order to maintain it's users interest. This would mean that membership renewal would continue if the user is motivated to follow through the programs and start new classes. This report looks into the performance of two users who have owned the *Peloton Bike+* for almost two years and use their cycling performance data to determine whether the gamification strategy **Peloton** utilizes were effective in *user motivation and retention*. Understanding the built in gamification design of it's classes, the author wants to highlight the application of **Motivational Affordances** and showcase it's effects on user's performance. The author identifies the metrics as the motivational affordances designed in to the system as features that help the user track their performance and increase motivation. These metrics gathered in the form of datasets will be shown in graphs created using the programming language [@citeR], where the data gathered from Peloton's platform will be cleaned, analyzed and visualized.
 
 # Data
 
 ## Data Source and Cleaning
-The datasets were pulled from the membership portal of the **Peloton** application as a downloadable csv file with over 379 observations and 18 variables per file. The datasets were reduced to a smaller observation and variable to focus on cycling data through data cleaning. The focus of this dataset was to provide insight on relationship between performance and design of the product. Due to the nature of the dataset being a results summary of the user performance recorded on the bike, the dataset can be limited on information and insight it can provide as it can only speak for the results of the users. The data cleaning was processed on an open source platform called 'R'[@citeR]. The data was cleaned using the package 'Janitor' [@Janitor] and filtered to create new data frames using packages 'Dplyr' [@Dplyr], 'TidyR' [@TidyR], 'Tidyverse' [@Tidyverse] and 'ReadR' [@Readr]. Tables and Graphs were created using packages 'Ggplot2' [@Ggplot2], 'GT' [@GT], 'KableExtra' [@KableExtra] and 'Glue' [@Glue].
+The datasets were pulled from the membership portal of the **Peloton** application as a downloadable csv file with over 379 observations and 18 variables per file. The datasets were reduced to a smaller observation and variable to focus on cycling data through data cleaning. The focus of this dataset was to provide insight on relationship between performance and design of the product. Due to the nature of the dataset being a results summary of the user performance recorded on the bike, the dataset can be limited on information and insight it can provide as it can only speak for the results of the users. The data cleaning was processed on an open source platform called 'R'[@citeR]. The data was cleaned using the package 'Janitor' [@Janitor] and filtered to create new data frames using packages 'Dplyr' [@Dplyr], 'TidyR' [@TidyR], 'Tidyverse' [@Tidyverse]. Tables and Graphs were created using packages 'Lubridate' [@Lubridate] 'Ggplot2' [@Ggplot2],'KableExtra' [@KableExtra] and PDF produced with 'Knitr' [@KnitR]
 
 For the purpose of having a meaningful analysis,the dataset was controlled down to focus on just the output of cycling classes. Cycling became the focal point of this report as this is the main selling point of the Bike+. The dataset is concentrated on the information regarding this exercise output rather than interpreting the dataset as a whole where other exercise classes were included. It is also worth noting that other exercise programs cannot be accurately tracked as they are exercise programs done on a mat, away from the bike that has user performance tracking capabilities. These tracking capabilities are dependent on the user engaging with the Bike+ and tracks physical activity through a heart monitor provided. Lastly, the first downloaded csv file was edited in excel by the author. There are two redundant entries in the datasheet that shows the dates and time stamps in the original file under the columns labeled as *Workout Timestamp* and *Class Timestamp*. The column *Workout Timestamp* was converted to show just the date and the time stamp moved to a new column for the purpose of graph plotting in 'R' [@citeR]. These Datasheets are uploaded on Github for easy access.   
 
@@ -69,13 +65,36 @@ For the purpose of having a meaningful analysis,the dataset was controlled down 
 
 The datasets were generated by **Peloton** by tracking user performance and is compiled in an excel sheet that can be extracted as a csv file. It contains information on any class started by the user and records the users performance. The datasets were trimmed to focus on *Cycling* outputs as this observation has the most variables that involves tracking user performance. These observations were: **Dates, Instructor Name, Total Output, Avg. Watts, Avg. Resistance, Avg Cadence and Avg. Heart Rate**. In order to understand the variables that the datasets have, we first need to understand how Peloton and the Bike+ is able to track and record the user performance. First, let's understand how Peloton calculates power output or **Watts**. According to their website [@Peloton-Watts] *each bike is equipped with hall effect sensors for measuring flywheel rotational speed (to capture Cadence) and Resistance. The sensors reference the Output values on the sensor control board and communicate these values to the Peloton HD touchscreen multiple times per second during a ride*. Moreover, Peloton also goes into detail how they measure the Output and how to understand the metrics they produce on the screen. On the webpage that discusses metrics [@Peloton-Metrics] it is mentioned that **Output** is measured in Watts and can be used interchangeably. **Watts** is defined as how much power you are exerting at any point in time. One can increase output by increasing *cadence*, *resistance* or both. [@Peloton-Metrics] **Cadence** is how fast one pedals and is measured in **RPMs** or rotations per minute. **Resistance** is the level of difficulty measured by percentage of the maximum resistance (0-100 percent). Resistance can be set by turning the red knob on the Bike+ to the right to increase it and to the left to decrease it.[@Peloton-Metrics] The lower the resistance, the lighter the pedals would feel and the higher the resistance, the heavier the pedaling would feel to the user. **Total Output** measured in **Kilojoules or KJ**, is how much work the user has done over the whole ride. This is calculated by taking the *average output times the number of seconds in the ride divided by 1,000*. If the user wants to increase their total output and move up the leaderboard, the total output has to be consistently high throughout the whole ride. This may mean increasing the resistance beyond what the coach recommends. [@Peloton-Metrics]
 
-Due to the exclusive and private nature of the datasets only accessible through the member's account portal, the datasets are limited to show just the performance of two users in a household sharing one Bike+ and can only be compared to each other. These datasets can only be obtained by the user and datasets can only be accessed if users share it. It is notable how **Peloton** made it easy for users to access their own data and be able to download directly as a csv file. There are no disclaimers regarding the downloadable file, assuming this is a feature the company thought users would appreciate. We can see in *Image 2* below a screenshot of a performance summary the users see after every ride and it can show how the Bike+ is designed to show the user that everything is measurable. The best way to see progress is to measure it by numbers and **Peloton** made it easy for users to watch their own progress. It empowers the user to take accountability on their own performance and as the number such as the **Total Output** go up, the more likely the user will workout again. The author believes that on top of the on-screen metrics, the downloadable dataset also plays into the self-competition and performance obsession the Bike+ perpetuates in the user to induce motivation. Moreover, the author came across an independent data visualizing webpage that can help users utilize to visualize their datasets without having to share their personal information. This **Shiny App** was created to help users visualize their data and make meaning out of it through graph plotting capabilities of the app. This can be seen in *Image 3* below. The Bike+ not only has a big screen dedicated to show the users real time performance, it also allows the user to pull their own data and track their performance. These measurement features can be considered one of the **Motivational Affordances** designed into the system.  Moreover, this may indicate a very thorough **Persona** building done by their design research team. Persona is *a fictional, yet realistic description of a typical or target user of the product*.[@NielsenNormanGroup] Based from this feature, we can speculate that one of the identities or description created for Peloton's persona is someone who has a tendency to obsess with numbers and metrics. This Persona would then have a higher inclination to interact and respond to the affordance feature created, and in this case these would be the metrics shown on the tablet. This may also be other forms of measurement Peloton deploys so the company can elicit performance and meet the goal of motivating the user. This can be measured by how often a user goes on the Bike+ and takes a class. We can also use this same metric to measure *Self-Competition*. The graphs and table in the results section of the report will show a visualization of of the two users performance data. 
+Due to the exclusive and private nature of the datasets only accessible through the member's account portal, the datasets are limited to show just the performance of two users in a household sharing one Bike+ and can only be compared to each other. These datasets can only be obtained by the user and datasets can only be accessed if users share it. It is notable how **Peloton** made it easy for users to access their own data and be able to download directly as a csv file. There are no disclaimers regarding the downloadable file, assuming this is a feature the company thought users would appreciate. See *Image 2* below (\@ref(fig:image2)) Below a screenshot of a performance summary the users see after every ride and it can show how the Bike+ is designed to show the user that everything is measurable. 
+
+```{r image2 = 'asis', out.width="475px", fig.cap= "Peloton Screen Ride Summary", echo=FALSE}
+download.file(url = "https://raw.githubusercontent.com/edenbarker/GamifyingRides/main/outputs/paper/images/Peloton%20Screen%202.png",
+          destfile = "image2.png",
+          mode = 'wb')
+knitr::include_graphics(path = "image2.png")
+```
+
+The best way to see progress is to measure it by numbers and **Peloton** made it easy for users to watch their own progress. It empowers the user to take accountability on their own performance and as the number such as the **Total Output** go up, the more likely the user will workout again. The author believes that on top of the on-screen metrics, the downloadable dataset also plays into the self-competition and performance obsession the Bike+ perpetuates in the user to induce motivation. Moreover, the author came across an independent data visualizing webpage that can help users utilize to visualize their datasets without having to share their personal information. This **Shiny App** was created to help users visualize their data and make meaning out of it through graph plotting capabilities of the app. This can be seen in *Image 3* and *Image 4* below (\ref(fig:image3)) (\ref(fig:image4)) . The Bike+ not only has a big screen dedicated to show the users real time performance, it also allows the user to pull their own data and track their performance. These measurement features can be considered one of the **Motivational Affordances** designed into the system.  Moreover, this may indicate a very thorough **Persona** building done by their design research team. Persona is *a fictional, yet realistic description of a typical or target user of the product*.[@NielsenNormanGroup] Based from this feature, we can speculate that one of the identities or description created for Peloton's persona is someone who has a tendency to obsess with numbers and metrics. This Persona would then have a higher inclination to interact and respond to the affordance feature created, and in this case these would be the metrics shown on the tablet. This may also be other forms of measurement Peloton deploys so the company can elicit performance and meet the goal of motivating the user. This can be measured by how often a user goes on the Bike+ and takes a class. We can also use this same metric to measure *Self-Competition*. The graphs and table in the results section of the report will show a visualization of of the two users performance data. 
+
+```{r image3 = 'asis', out.width="475px", fig.cap= "Shiny App Graph Plots for User 1", echo=FALSE}
+download.file(url = "https://raw.githubusercontent.com/edenbarker/GamifyingRides/main/outputs/paper/images/PR%20Graph%20User1%20-%20Taken%20from%20Shiny%20App.jpg",
+          destfile = "image3.png",
+          mode = 'wb')
+knitr::include_graphics(path = "image3.png")
+```
+
+```{r image4 = 'asis', out.width="475px", fig.cap= "Shiny App Graph Plots for User 2", echo=FALSE}
+download.file(url = "https://raw.githubusercontent.com/edenbarker/GamifyingRides/main/outputs/paper/images/PR%20Graph%20User2%20-%20Taken%20from%20Shiny%20App.png",
+          destfile = "image4.png",
+          mode = 'wb')
+knitr::include_graphics(path = "image4.png")
+```
 
 # Shiny App Preview
 
-Please not that the Shiny App Embedded is not created by the author, but rather was found through researching resources to build the report. The particular link was found in an online forum and was supposedly shared by the Shiny App creator under the name: *muddybanksofthemiss* [@Reddit2015] three years ago. The purpose of the preview is to show how sophisticated some of the Peloton users in terms of tracking and understanding their performance. 
+Please not that the Shiny App Embedded (\ref(fig:ShinyApp)) is not created by the author, but rather was found through researching resources to build the report. The particular link was found in an online forum and was supposedly shared by the Shiny App creator under the name: *muddybanksofthemiss* [@Reddit2015] three years ago. The purpose of the preview is to show how sophisticated some of the Peloton users in terms of tracking and understanding their performance.
 
-```{r Shiny App, fig.cap="Shiny App Preview", echo = FALSE}
+```{r ShinyApp, fig.cap="Shiny App Preview", echo = FALSE}
 # A public Shiny app that visualizes user data was found online
 webshot::install_phantomjs()
 knitr::include_app("https://arraycgh.shinyapps.io/crushing_it/"
@@ -87,7 +106,7 @@ knitr::include_app("https://arraycgh.shinyapps.io/crushing_it/"
 
 This is where we can see the datasets visualized in graphs. The datasets are visualized per user to show each of the user's performance through time and was plotted to show continuous data from 2020 to 2022. 
 
-The first two graphs in *Figure 1* shows the performance of User1(Persona 1) and User2(Persona2), depending on the class taken and the length of the class in minutes while the *Total Output* is represented by the fill color. We can assume that total output is synonymous to the number of classes taken plus the performance , as the performance cannot be masured if there is no class taken. This Graph is performance based and tracks the total output where one can see the progress the user made. On Figure 1, for both Persona 1 and 2, we can see that the usage has been in bursts which shows that having the Bike+ alone does not increase user's motivation to go on it. The Bike+ was bought in August 2020 where the usage happened within the first couple months that can be related to the excitement of a newly purchased exercise machine. However, we see the usage getting less then dropping off at the end of 2020 and start of the year 2021 and we see this pattern happen throughout the dataset of 2020-2022. This shows how **Peloton** needs to put in the effort to sustain users motivation to keep using the Bike+. What can potentially happen is the user will completely lose interest and halt the monthly membership which can mean less business for the company. Since the company relies for internal motivation to go back on the Bike+ in order for the company to deploy it's motivational affordances, the company also needs to put external efforts such as email reminders to users about new and upcoming classes, tracking who their favourite instructors are and showing their upcoming classes and giving a monthly report summary of usage.
+The first two graphs in *Figure 5 and Figure 6* (\ref(fig:GraphSet1)) shows the performance of User1(Persona 1) and User2(Persona2), depending on the class taken and the length of the class in minutes while the *Total Output* is represented by the fill color. We can assume that total output is synonymous to the number of classes taken plus the performance , as the performance cannot be masured if there is no class taken. This Graph is performance based and tracks the total output where one can see the progress the user made. On Figure 1, for both Persona 1 and 2, we can see that the usage has been in bursts which shows that having the Bike+ alone does not increase user's motivation to go on it. The Bike+ was bought in August 2020 where the usage happened within the first couple months that can be related to the excitement of a newly purchased exercise machine. However, we see the usage getting less then dropping off at the end of 2020 and start of the year 2021 and we see this pattern happen throughout the dataset of 2020-2022. This shows how **Peloton** needs to put in the effort to sustain users motivation to keep using the Bike+. What can potentially happen is the user will completely lose interest and halt the monthly membership which can mean less business for the company. Since the company relies for internal motivation to go back on the Bike+ in order for the company to deploy it's motivational affordances, the company also needs to put external efforts such as email reminders to users about new and upcoming classes, tracking who their favourite instructors are and showing their upcoming classes and giving a monthly report summary of usage.
 
 Another interesting information we can gather from the graphs are the type of classes often taken by the users and how they relate to how much they have sustained the workouts by class repetition. The common class both users take repeatedly are the *Power Zone* classes. These classes can be considered as one of the hardest but users can train for to build strength. **Power Zones** according to Peloton *is one of the most effective ways to level up your fitness when it comes to indoor cycling. It is a method of fitness training designed to have users working at seven different levels of exertions(or zones)*. [@Peloton-PowerZone] These classes are coaching heavy where the users have to follow the instructors on when to increase their *Cadence* and *Resistance* to meet the zone requirements and needs to be sustained in a certain amount of time over a range of weeks with a promise of increase strength and endurance measured through a fitness test called **Functional Threshold Power Test** or **FTP Test**. Users can also measure their progress by feeling for how much higher they can push their *resistance* for. The higher the number their *resistance* is, the more they have to push their pedals and will either have a high or low *cadence* depending on how strong the users have become. Inspired by the users ability to meet and sustain certain power zones, the users can measure their own progress. It is worth noting that **Peloton** uses the word training or train in a lot of their classes. This is to further the identity the company wishes to cultivate in their users and that is their ability to perform better and see progress which leads to increase in motivation to keep working out. Another interesting data we can gather from the graph is how Music and Theme rides were also prominent classes the users are taking. Both the classes are Music inspired and something Peloton tries to invest in too. **Peloton** is known to add new artists and playlist as part of their classes. This is also based on user information as Peloton gives users ability to *like* a song by tapping the heart beside it when it's playing in a class. Lastly, it is important to note that the Lane Break data is not part of this dataset as it is a new feature where Peloton shows a video game interface that looks like a race track where the user is asked to meet specific performance markers such as Cadence and Resistance to get points. Although the feature is available, the dataset is not available for download just yet. 
 
@@ -99,39 +118,38 @@ persona2 <- read.csv("https://raw.githubusercontent.com/edenbarker/GamifyingRide
 
 ```
 
-```{r Graph Set 1 code, fig.cap="Figure 1. User Performance Summary from August 2020 to March 2022", echo = FALSE}
-# Graph User 1 data from 2020-2022 
-
+```{r GraphSet1, fig.cap="Figure 6. User Performance Summary from August 2020 to March 2022", echo = FALSE}
+#Graph User 1 data from 2020-2022 to show overall performance summary
 persona1 |> 
   ggplot(mapping = aes(x = total_output, y = length_minutes, fill = type)) +
    geom_bar(stat = "identity", position = position_dodge()) +
    labs(x = "Total Output",
         y = "Length of Class in Minutes",
         color = "Class Type",
-        title = "Figure 1: User 1 Performance Progress Summary from August 2020 to March 2022",
+        title = "Figure 5: User 1 Performance Progress Summary from August 2020 to March 2022",
         caption = "Data Source: Peloton") +
   coord_flip() +
    facet_wrap(vars(year(workout)),
               scales = "free_x")
 
-# Graph User 2 data from 2020-2022
+#Graph User 2 data from 2020-2022 to show overall performance summary
 persona2 |> 
   ggplot(mapping = aes(x = total_output, y = length_minutes, fill = type)) +
    geom_bar(stat = "identity", position = position_dodge()) +
    labs(x = "Total Output",
         y = "Length of Class in Minutes",
         color = "Class Type",
-        title = "Figure 2: User 1 Performance Progress Summary from August 2020 to March 2022",
+        title = "Figure 6: User 1 Performance Progress Summary from August 2020 to March 2022",
         caption = "Data Source: Peloton") +
   coord_flip() +
    facet_wrap(vars(year(workout)),
               scales = "free_x")
 ```
 
-The following graphs visualizes both of the users performance per instructor and class type. This is also an interesting data to understand as Peloton invests in their instructors and they play a big role in promoting the motivational affordances built in to the system. Peloton has 16 instructors listed in the graph but does not include other instructors for non-cycling classes. The author believes that Peloton has this much number of instructors so users don't get bored of taking the same kind of classes and to also cater to different personalities. There are instructors who are know to have very difficult classes such as Alex Toussaint while some classes are know for the therapeutic approach of an instructor that talks about inspiring life lessons as her coaching practice. Based from the graphs we can see that there are instructors users commonly follow and prefer. The more circles there are, the more classes the users have taken with the same instructor. This data along with the type of class the users usually take based on the color of the circles may communicate the type of personality the users have. If **Peloton** takes this data, they can assume that user1 is likely to stick to classes that can help train for strength and endurance. Paying attention to the color of the circles, one can see that classes taken with Matt Wilpers, Olivia Amato and Denis Morton etc. were helping the user build for strength and endurance as the color indicates power zone classes. It is also interesting to see that User1 has Music based classes with two instructors which can tell us that the music played in these classes may be the users preference. This can also mean that the user resonates with the instructor and may find them relatable or fun to train with. Meanwhile we can see that the graph for User 2 shows a specific theme which is heavy on both music and theme rides. These rides are often harder than it seems, it is usually dependent on who the instructor is. We see that Ally Love and Alex Toussaint were the user's top instructors based from how many circles there are and it can also show how well the users performance is improving as it is also showing increase in output. Understanding these two graphs help us understand why **Peloton** would invest in their instructors. The users need a coach to help them understand their performance and also to encourage them during difficult rides. In a business perspective, we can also assume that this is another way Peloton can gauge who the instructors they will retain based on how many classes users take with them. This can also be a source of motivation for the instructors to carefully curate their classes to inspire motivation and improve user performance. 
+The following graphs *Figure 7 and Figure 8* (\ref(fig:GraphSet2)) visualizes both of the users performance per instructor and class type. This is also an interesting data to understand as Peloton invests in their instructors and they play a big role in promoting the motivational affordances built in to the system. Peloton has 16 instructors listed in the graph but does not include other instructors for non-cycling classes. The author believes that Peloton has this much number of instructors so users don't get bored of taking the same kind of classes and to also cater to different personalities. There are instructors who are know to have very difficult classes such as Alex Toussaint while some classes are know for the therapeutic approach of an instructor that talks about inspiring life lessons as her coaching practice. Based from the graphs we can see that there are instructors users commonly follow and prefer. The more circles there are, the more classes the users have taken with the same instructor. This data along with the type of class the users usually take based on the color of the circles may communicate the type of personality the users have. If **Peloton** takes this data, they can assume that user1 is likely to stick to classes that can help train for strength and endurance. Paying attention to the color of the circles, one can see that classes taken with Matt Wilpers, Olivia Amato and Denis Morton etc. were helping the user build for strength and endurance as the color indicates power zone classes. It is also interesting to see that User1 has Music based classes with two instructors which can tell us that the music played in these classes may be the users preference. This can also mean that the user resonates with the instructor and may find them relatable or fun to train with. Meanwhile we can see that the graph for User 2 shows a specific theme which is heavy on both music and theme rides. These rides are often harder than it seems, it is usually dependent on who the instructor is. We see that Ally Love and Alex Toussaint were the user's top instructors based from how many circles there are and it can also show how well the users performance is improving as it is also showing increase in output. Understanding these two graphs help us understand why **Peloton** would invest in their instructors. The users need a coach to help them understand their performance and also to encourage them during difficult rides. In a business perspective, we can also assume that this is another way Peloton can gauge who the instructors they will retain based on how many classes users take with them. This can also be a source of motivation for the instructors to carefully curate their classes to inspire motivation and improve user performance. 
 
-```{r Graph Set 2 Code, fig.cap="Figure 2. User Performance Summary Per Instructor and Class Type", echo = FALSE}
-# Graph for User1
+```{r GraphSet2, fig.cap="Figure 8. User Performance Summary Per Instructor and Class Type", echo = FALSE}
+# Graph for User1 of class summary with data on coaches
 persona1 |>
    ggplot (mapping = aes(x = instructor_name, group = total_output, fill = type)) +
   geom_dotplot(method = 'histodot', alpha = 0.3, binwidth = 1) +
@@ -139,13 +157,13 @@ persona1 |>
   labs(x = "Name of Coach",
        y = "Total Output",
        fill = "Type of Class",
-       title = "Figure 2: User 1 Performance Overview Per Instructor and Class Type",
+       title = "Figure 7: User 1 Performance Overview Per Instructor and Class Type",
        caption = "Data Source: Peloton") +
   coord_flip() +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
   scale_color_brewer(palette = "Set1")
 
-# Graph for User2
+# Graph for User2 of class summary with data on coaches
 persona2 |>
    ggplot (mapping = aes(x = instructor_name, group = total_output, fill = type)) +
   geom_dotplot(method = 'histodot', alpha = 0.3, binwidth = 1) +
@@ -153,7 +171,7 @@ persona2 |>
   labs(x = "Name of Coach",
        y = "Total Output",
        fill = "Type of Class",
-       title = "Figure 2: User 2 Performance Overview Per Instructor and Class Type",
+       title = "Figure 8: User 2 Performance Overview Per Instructor and Class Type",
        caption = "Data Source: Peloton") +
   coord_flip() +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
@@ -161,7 +179,7 @@ persona2 |>
 
 ```
 
-Understanding how each metric relates to the data extracted and how that can help us understand how the users performance is directly related to the motivational affordances the company designed for its users, let's have a quick overview of the summary of cycling classes for the users. As shown in the table below we can see that User 2 worked out significantly more than User 1. This means that between the two users, User 2 is more likely to respond to the motivational affordances around the experience and may be more metric centered. However, we also see that despite having less output, User 1 is still able to workout and sustain them for periods of time which can mean that there is no competition between the two users. This then tells us that **Self-competition** manifests through the numbers of output users have without having to relate to each others performance. We can assume that the performances the users have shown based on their data was purely from their own motivation that is either enhanced or elicited by the company's deliberate user experience design. *Self-competition* then is a by product of the motivational affordances Peloton designed for and can be measured as total number of output per user. The higher the output is from the user the more self-competition manifests and fostered through the classes they take. It is worth noting that we can also measure self-competition based on user performance when riding based on leaderboard rankings, however, since there is no extractable way to get these data, we can only assume that the leaderboard rankings can improve performance. According to the users, they often do not engage with the leaderboard setting and usually removes it from the screen. However, the leaderboard feature is one of the first feature Peloton has and has kept which may mean that this function does elicit performance and may be the case for other users. Moreover, we can also assume that the Lane Break feature Peloton has recently added cultivates the idea of *self-competition* as the user can gauge their performance by earning power points without having to ride with other users. 
+Understanding how each metric relates to the data extracted and how that can help us understand how the users performance is directly related to the motivational affordances the company designed for its users, let's have a quick overview of the summary of cycling classes for the users. As shown in the table below *Table 1* (\ref(fig:Table1)) we can see that User 2 worked out significantly more than User 1. This means that between the two users, User 2 is more likely to respond to the motivational affordances around the experience and may be more metric centered. However, we also see that despite having less output, User 1 is still able to workout and sustain them for periods of time which can mean that there is no competition between the two users. This then tells us that **Self-competition** manifests through the numbers of output users have without having to relate to each others performance. We can assume that the performances the users have shown based on their data was purely from their own motivation that is either enhanced or elicited by the company's deliberate user experience design. *Self-competition* then is a by product of the motivational affordances Peloton designed for and can be measured as total number of output per user. The higher the output is from the user the more self-competition manifests and fostered through the classes they take. It is worth noting that we can also measure self-competition based on user performance when riding based on leaderboard rankings, however, since there is no extractable way to get these data, we can only assume that the leaderboard rankings can improve performance. According to the users, they often do not engage with the leaderboard setting and usually removes it from the screen. However, the leaderboard feature is one of the first feature Peloton has and has kept which may mean that this function does elicit performance and may be the case for other users. Moreover, we can also assume that the Lane Break feature Peloton has recently added cultivates the idea of *self-competition* as the user can gauge their performance by earning power points without having to ride with other users. 
 
 ```{r Table 1, fig.cap="Figure 3. User Cycling Summary 2020-2022", echo = FALSE}
 # We will create a Tibble for our Summary Table that combines the summary of data from both personas
@@ -173,7 +191,7 @@ combined_personas <-
          Total_Workout = c('177','380'))
 view(combined_personas)
 
-#Figure3 Table
+#Figure3 Table is the overview of data created on the tibble
 kbl(combined_personas, caption = "User Total Cycling Workout Summary 2020-2022", booktabs = T) %>%
   kable_styling(latex_options = c("striped", "hold_position"))
 
@@ -192,11 +210,9 @@ One of the biggest weakness of the datasets were the limited sample of user data
 
 ## Next Steps and Conclusion
 
-The author hopes to continue to analyze the user performance data, and to include more of the newly integrated features to base the analysis on. It would be interesting to know how the performance differs for the Lane Break outputs or if it yields similar results and how that influences Peloton's decision on what feature and experience to create. It would also be interesting to study in-depth the performance data on Music based classes. Music is also an experience that can be designed and can elicit emotions or reactions and would be fascinating to see the data on how that can translate to user performance. The author also hopes that a survey can be done to gather more user experience data from users to compare with their own performance data. Overall the author believes that the user experience being designed for the intended user of Peloton Bike+ is not harmful to the user. It can enhance the user's physical activity which then leads to a more active and healthier body. It can also improve strength and endurance which can benefit the user's health and over all well-being. 
+The author hopes to continue to analyze the user performance data, and to include more of the newly integrated features to base the analysis on. It would be interesting to know how the performance differs for the **Lane Break** outputs or if it yields similar results and how that influences Peloton's decision on what feature and experience to create. It would also be interesting to study in-depth the performance data on Music based classes. Music is also an experience that can be designed and can elicit emotions or reactions and would be fascinating to see the data on how that can translate to user performance. The author also hopes that a survey can be done to gather more user experience data from users to compare with their own performance data. Overall the author believes that the user experience being designed for the intended user of **Peloton Bike+** is not harmful to the user. It can enhance the user's physical activity which then leads to a more active and healthier body. It can also improve strength and endurance which can benefit the user's health and over all well-being. 
 
-In conclusion, Peloton's deployment of meticulous user experience design through motivational affordances does elicit an increase in user performance and motivation. Through the use of performance metrics and user performance encouragement by instructors, Peloton is able to draw out self-competition which evokes further motivation to increase work outs therefore continuing the membership for classes. Peloton can see and understand their users through the tracking of user information and can help the company address user needs and wants to build better personas that would fit the identity Peloton users have. This creates more loyalty to the brand and sustained membership over the long term. 
-
-
+In conclusion, Peloton's deployment of meticulous user experience design through motivational affordances does elicit an increase in user performance and motivation. Through the use of performance metrics and user performance encouragement by instructors, **Peloton** is able to draw out self-competition which evokes further motivation to increase work outs therefore continuing the membership for classes. **Peloton** can see and understand their users through the tracking of user information and can help the company address user needs and wants to build better personas that would fit the identity **Peloton** users have. This creates more loyalty to the brand and sustained membership over the long term. For now it seems like the data being tracked is utilized in a way that benefits not only the company but also brings value to their customers. 
 
 \newpage
 
@@ -204,13 +220,13 @@ In conclusion, Peloton's deployment of meticulous user experience design through
 
 # Appendix {-}
 
-**Shiny App Link** - ]Crushing It] (https://arraycgh.shinyapps.io/crushing_it/)
+**Shiny App Link** - [Crushing It Link] (https://arraycgh.shinyapps.io/crushing_it/)
 
 **Gamification** - The use of games in none gaming environments to motivate users in applications or software as a service.[@DeterdingEtal2011] 
 
 **Bike+** - Peloton's second version of their stationary indoor Bike. 
 
-**Leaderboard** - Peloton's built in active user ranking that rates users according to real-time performance. 
+**Leaderboard** - Peloton's built in active user ranking that rates users according to real-time performance.
 
 **Watts** - Is defined as how much power you are exerting at any point in time. One can increase output by increasing *cadence*, *resistance* or both. [@Peloton-Metrics]
 
@@ -229,7 +245,6 @@ In conclusion, Peloton's deployment of meticulous user experience design through
 **Motivational Affordance** - Comprise of properties of an object that determine whether and how it support one's motivational needs.[@Zhang2008]
 
 **Self-Competition** - Competition within oneself, is based on accepting a challenge. It could be a very important motive for a person to reach a chosen point and prepare for it. [@Hurych2009]
-
 
 \newpage
 

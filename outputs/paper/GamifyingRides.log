@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.4.19)  19 APR 2022 15:48
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.4.19)  19 APR 2022 21:22
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -444,8 +444,7 @@ Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
 File: l3backend-pdftex.def 2022-04-14 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count309
 \l__pdf_internal_box=\box72
-)
-No file GamifyingRides.aux.
+) (./GamifyingRides.aux)
 \openout1 = `GamifyingRides.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 124.
@@ -485,6 +484,7 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 124.
 LaTeX Info: Redefining \pageref on input line 124.
 LaTeX Info: Redefining \nameref on input line 124.
+(./GamifyingRides.out) (./GamifyingRides.out)
 \@outlinefile=\write3
 \openout3 = `GamifyingRides.out'.
 
@@ -562,6 +562,10 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <6> on input line 126.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <5> on input line 126.
+(./GamifyingRides.toc
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <7> on input line 3.
+)
 \tf@toc=\write4
 \openout4 = `GamifyingRides.toc'.
 
@@ -569,24 +573,165 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 
 {/Users/edenbarker/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 
-LaTeX Warning: File `Peloton_Screen_1.png' not found on input line 149.
+LaTeX Warning: Reference `fig:image1' on page 2 undefined on input line 143.
+
+<image1.png, id=77, 953.5625pt x 675.52374pt>
+File: image1.png Graphic file (type png)
+<use image1.png>
+Package pdftex.def Info: image1.png  used on input line 146.
+(pdftex.def)             Requested size: 476.79463pt x 337.77135pt.
+
+Overfull \hbox (7.03961pt too wide) in paragraph at lines 146--146
+[][]
+ []
+
+[2] [3
+pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.158 
+       <./image1.png>] [4]
+
+LaTeX Warning: Reference `fig:image2' on page 5 undefined on input line 166.
+
+<image2.png, id=97, 953.5625pt x 675.52374pt>
+File: image2.png Graphic file (type png)
+<use image2.png>
+Package pdftex.def Info: image2.png  used on input line 169.
+(pdftex.def)             Requested size: 476.79463pt x 337.77135pt.
+
+Overfull \hbox (7.03961pt too wide) in paragraph at lines 169--169
+[][]
+ []
 
 
-! Package pdftex.def Error: File `Peloton_Screen_1.png' not found: using draft setting.
+LaTeX Warning: Reference `(' on page 5 undefined on input line 172.
 
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.149 \includegraphics{Peloton_Screen_1.png}
-                                             
+
+LaTeX Warning: Reference `(' on page 5 undefined on input line 172.
+
+[5
+pdfTeX warning (ext4): destination with the same identifier (name{figure.2}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.173 
+       <./image2.png>]
+<image3.png, id=104, 803.0pt x 501.875pt>
+File: image3.png Graphic file (type png)
+<use image3.png>
+Package pdftex.def Info: image3.png  used on input line 175.
+(pdftex.def)             Requested size: 476.79233pt x 297.9952pt.
+
+Overfull \hbox (7.03731pt too wide) in paragraph at lines 175--175
+[][]
+ []
+
+<image4.png, id=105, 852.18375pt x 586.19pt>
+File: image4.png Graphic file (type png)
+<use image4.png>
+Package pdftex.def Info: image4.png  used on input line 179.
+(pdftex.def)             Requested size: 476.79053pt x 327.969pt.
+
+Overfull \hbox (7.0355pt too wide) in paragraph at lines 179--179
+[][]
+ []
+
+
+LaTeX Warning: Reference `(' on page 6 undefined on input line 185.
+
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 187.
+(/Users/edenbarker/Library/TinyTeX/texmf-dist/tex/latex/lm/t1lmtt.fd
+File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+Overfull \hbox (522.4921pt too wide) in paragraph at lines 189--189
+[]\T1/lmtt/m/n/10 ## It seems that the version of `phantomjs` installed is greater than or equal to the requested version.To install the requested version or downgrade to another version, use `force = TRUE`.[] 
+ []
+
+<GamifyingRides_files/figure-latex/ShinyApp-1.pdf, id=107, 469.755pt x 1165.35374pt>
+File: GamifyingRides_files/figure-latex/ShinyApp-1.pdf Graphic file (type pdf)
+<use GamifyingRides_files/figure-latex/ShinyApp-1.pdf>
+Package pdftex.def Info: GamifyingRides_files/figure-latex/ShinyApp-1.pdf  used on input line 191.
+(pdftex.def)             Requested size: 262.1937pt x 650.44205pt.
+[6
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.193 \newpage
+               <./image3.png>] [7
+pdfTeX warning (ext4): destination with the same identifier (name{figure.4}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.193 \newpage
+               <./image4.png>] [8 <./GamifyingRides_files/figure-latex/ShinyApp-1.pdf>]
+
+LaTeX Warning: Reference `(' on page 9 undefined on input line 200.
+
+<GamifyingRides_files/figure-latex/GraphSet1-1.pdf, id=147, 469.755pt x 325.215pt>
+File: GamifyingRides_files/figure-latex/GraphSet1-1.pdf Graphic file (type pdf)
+<use GamifyingRides_files/figure-latex/GraphSet1-1.pdf>
+Package pdftex.def Info: GamifyingRides_files/figure-latex/GraphSet1-1.pdf  used on input line 204.
+(pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
+<GamifyingRides_files/figure-latex/GraphSet1-2.pdf, id=148, 469.755pt x 325.215pt>
+File: GamifyingRides_files/figure-latex/GraphSet1-2.pdf Graphic file (type pdf)
+<use GamifyingRides_files/figure-latex/GraphSet1-2.pdf>
+Package pdftex.def Info: GamifyingRides_files/figure-latex/GraphSet1-2.pdf  used on input line 204.
+(pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 204--205
+[][]
+ []
+
+[9] [10 <./GamifyingRides_files/figure-latex/GraphSet1-1.pdf>]
+
+LaTeX Warning: Reference `(' on page 11 undefined on input line 206.
+
+<GamifyingRides_files/figure-latex/GraphSet2-1.pdf, id=164, 469.755pt x 325.215pt>
+File: GamifyingRides_files/figure-latex/GraphSet2-1.pdf Graphic file (type pdf)
+<use GamifyingRides_files/figure-latex/GraphSet2-1.pdf>
+Package pdftex.def Info: GamifyingRides_files/figure-latex/GraphSet2-1.pdf  used on input line 208.
+(pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
+<GamifyingRides_files/figure-latex/GraphSet2-2.pdf, id=165, 469.755pt x 325.215pt>
+File: GamifyingRides_files/figure-latex/GraphSet2-2.pdf Graphic file (type pdf)
+<use GamifyingRides_files/figure-latex/GraphSet2-2.pdf>
+Package pdftex.def Info: GamifyingRides_files/figure-latex/GraphSet2-2.pdf  used on input line 208.
+(pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 208--209
+[][]
+ []
+
+[11 <./GamifyingRides_files/figure-latex/GraphSet1-2.pdf>] [12 <./GamifyingRides_files/figure-latex/GraphSet2-1.pdf>]
+
+LaTeX Warning: Reference `(' on page 13 undefined on input line 210.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[13 <./GamifyingRides_files/figure-latex/GraphSet2-2.pdf>] [14
+pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.233 
+      ] [15] [16] [17] [18] (./GamifyingRides.aux)
+
+LaTeX Warning: There were undefined references.
+
+Package rerunfilecheck Info: File `GamifyingRides.out' has not changed.
+(rerunfilecheck)             Checksum: 2F940BD4950B271532295E25F748A4DD;1400.
+ ) 
 Here is how much of TeX's memory you used:
- 12685 strings out of 480198
- 200492 string characters out of 5892402
- 495646 words of memory out of 5000000
- 30414 multiletter control sequences out of 15000+600000
- 528645 words of font info for 73 fonts, out of 8000000 for 9000
+ 12882 strings out of 480198
+ 204072 string characters out of 5892402
+ 499498 words of memory out of 5000000
+ 30534 multiletter control sequences out of 15000+600000
+ 535981 words of font info for 80 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 60i,7n,63p,2083b,322s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 60i,9n,63p,2938b,331s stack positions out of 10000i,1000n,20000p,200000b,200000s
+{/Users/edenbarker/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/Users/edenbarker/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}</Users/edenbarker/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></Users/edenbarker/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/edenbarker/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx9.pfb></Users/edenbarker/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/edenbarker/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb></Users/edenbarker/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></Users/edenbarker/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr6.pfb></Users/edenbarker/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb></Users/edenbarker/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr9.pfb></Users/edenbarker/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb></Users/edenbarker/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt10.pfb>
+Output written on GamifyingRides.pdf (18 pages, 1392677 bytes).
+PDF statistics:
+ 354 PDF objects out of 1000 (max. 8388607)
+ 286 compressed objects within 3 object streams
+ 73 named destinations out of 1000 (max. 500000)
+ 134 words of extra memory for PDF output out of 10000 (max. 10000000)
 
-!  ==> Fatal error occurred, no output PDF file produced!
